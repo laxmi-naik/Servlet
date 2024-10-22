@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xworkz.page.dto.CricketTicketDTO;
+import com.xworkz.page.service.CricketTicketService;
+import com.xworkz.page.service.CricketTicketServiceImp;
 
 @WebServlet(loadOnStartup=1,urlPatterns="/booked")
 public class CricketTicket extends HttpServlet {
@@ -28,8 +30,17 @@ public class CricketTicket extends HttpServlet {
 		int updatednoOfTickets=Integer.valueOf(noOfTickets);
 		
 		CricketTicketDTO dto =new CricketTicketDTO(groundName,customerName,customEmail,seatType,updatednoOfTickets);
-		System.out.println(""+groundName+""+customerName+""+customEmail+""+seatType+""+updatednoOfTickets+"");
-		System.out.println("successfully booked");
+		System.out.println(dto);
+		CricketTicketService cricketTicketService=new CricketTicketServiceImp();
+		
+		boolean updateddto=cricketTicketService.printDto(dto);
+		if(updateddto) {
+			System.out.println(" dto is updated ");
+		}
+		else {
+			System.out.println("dto is not updated");
+		}
+
 		
 	}
 	

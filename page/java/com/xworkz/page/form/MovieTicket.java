@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xworkz.page.dto.MovieTicketDTO;
+import com.xworkz.page.service.MovieTicketService;
+import com.xworkz.page.service.MovieTicketServiceImp;
 @WebServlet(loadOnStartup=1,urlPatterns="/Book")
 public class MovieTicket extends HttpServlet{
 
@@ -32,7 +34,17 @@ public class MovieTicket extends HttpServlet{
 		
 		
 		MovieTicketDTO dto =new MovieTicketDTO(name,updatedtotalTickets,theaterName,seatType,updateddonation,date,time);
-		System.out.println(""+name+""+updatedtotalTickets+""+theaterName+""+seatType+""+updateddonation+""+date+""+time+"");
+		System.out.println(dto);
+		MovieTicketService movieTicketService= new MovieTicketServiceImp();
+		boolean updated=movieTicketService.displayDto(dto);
+		if(updated) {
+			System.out.println(" dto is updated ");
+		}
+		else {
+			System.out.println("dto is not updated");
+			return ;
+		}
+		
 		System.out.println("booked successfully");
 	}
 	

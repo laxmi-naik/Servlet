@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xworkz.page.dto.CollegeAdmissionDTO;
+import com.xworkz.page.service.CollegeService;
+import com.xworkz.page.service.CollegeServiceImpl;
 @WebServlet(loadOnStartup=1,urlPatterns="/apply")
 public class CollegeAdmission extends HttpServlet {
  public CollegeAdmission() {
@@ -31,10 +33,19 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	int updatedage=Integer.valueOf(age);
 	
 	CollegeAdmissionDTO  dto = new CollegeAdmissionDTO(name,email,updatedmobile,address,fatherName,motherName,updatedpercentage,course,updatedage);
-	System.out.println(""+name+""+email+""+updatedmobile+""+address+""+fatherName+""+motherName+""+updatedpercentage+""+course+""+updatedage+"");
+	System.out.println(dto);
+	
+	CollegeService college=new CollegeServiceImpl();
+	boolean updateddto=college.print(dto);
+	if( updateddto) {
+		System.out.println(" dto is updated  ");
+	}
+	else {
+		System.out.println("dto is not updated");
+	}
 	
 	
-	System.out.println("admission is successful");
+	
 	
 }
  

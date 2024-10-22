@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.xworkz.page.dto.FeedBackDTO;
+import com.xworkz.page.service.FeedBackService;
+import com.xworkz.page.service.FeedBackServiceImp;
 @WebServlet(loadOnStartup=1,urlPatterns="/submit")
 public class FeedBack extends HttpServlet{
 	
@@ -23,7 +25,20 @@ public class FeedBack extends HttpServlet{
 		String comments=req.getParameter("comments");
 		
 		FeedBackDTO dto =new FeedBackDTO(name,email,comments);
-		System.out.println(""+name+""+email+""+comments+"");
+		System.out.println(dto);
+		
+		FeedBackService feedBackService =new FeedBackServiceImp();
+		
+		boolean updated=feedBackService.display(dto);
+		
+		if(updated) {
+			System.out.println(" dto is updated ");
+		}
+		else {
+			System.out.println("dto is not updated");
+			return ;
+		}
+		
 		System.out.println(" feedback send successfully");
 		
 	}
