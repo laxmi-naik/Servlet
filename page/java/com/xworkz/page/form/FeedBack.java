@@ -2,6 +2,7 @@ package com.xworkz.page.form;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,10 +37,13 @@ public class FeedBack extends HttpServlet{
 		}
 		else {
 			System.out.println("dto is not updated");
-			return ;
+			
 		}
 		
-		System.out.println(" feedback send successfully");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/FeedBack.jsp");
+		req.setAttribute("ref", name);
+		 dispatcher.forward(req, resp);
+		
 		
 	}
 	

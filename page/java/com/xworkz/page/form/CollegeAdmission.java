@@ -2,6 +2,7 @@ package com.xworkz.page.form;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,10 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	else {
 		System.out.println("dto is not updated");
 	}
+	req.setAttribute("ref", name);
+	RequestDispatcher dispatcher = req.getRequestDispatcher("/CollegeAdmission.jsp");
+	req.setAttribute(name, name);
+	 dispatcher.forward(req, resp);
 	
 	
 	

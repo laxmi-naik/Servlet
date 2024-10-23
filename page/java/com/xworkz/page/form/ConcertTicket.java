@@ -2,6 +2,7 @@ package com.xworkz.page.form;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,9 @@ public class ConcertTicket extends HttpServlet {
 		else {
 			System.out.println("dto is not updated");
 		}
-		
+		req.setAttribute("ref", location);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/ConcertTicket.jsp");
+		 dispatcher.forward(req, resp);
 		
 		
 	}
