@@ -1,5 +1,8 @@
 package com.xworkz.Product.Service;
 
+
+import com.xworkz.Product.Repository.ProductRepository;
+import com.xworkz.Product.Repository.ProductRepositoryImp;
 import com.xworkz.Product.dto.ProductDTO;
 
 public class ProductServiceImp implements ProductService {
@@ -46,8 +49,19 @@ public class ProductServiceImp implements ProductService {
 			
 		}
 		if(valid) {
-			return true;
+			System.out.println("save data in to database");
+			ProductRepository rep=new ProductRepositoryImp();
+			int pk=rep.save(dto);
+		
+		if(pk>0) {
+			System.out.println("saved data in to database");
 		}
+		else {
+			valid=false;
+			System.out.println("data is not  saved in database");
+		}
+		
+	  }
 		return false;
 	}
 
